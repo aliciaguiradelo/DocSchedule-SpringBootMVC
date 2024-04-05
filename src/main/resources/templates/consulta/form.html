@@ -16,10 +16,10 @@
         <h2>Agende aqui uma nova consulta</h2>
     </header>
 
-    <form action="/consultas" method="POST">
+    <form action="/consultas" method="POST" th:object="${consulta}">
         <div>
             <label for="especialidade">Especialidade</label>
-            <select name="especialidade" id="especialidade">
+            <select th:field="*{especialidade}">
                 <option value="">Selecione uma Especialidade</option>
                 <option value="cardiologia">Cardiologia</option>
                 <option value="dermatologia">Dermatologia</option>
@@ -30,16 +30,19 @@
                 <option value="pediatria">Pediatria</option>
                 <option value="psiquiatria">Psiquiatria</option>
             </select>
+            
         </div>
     
         <div>
             <label for="motivo">Motivo</label>
-            <textarea type="text" name="motivo" id="motivo"></textarea>
+            <textarea type="text" th:field="*{motivo}" class="nes-textarea" th:classappend="{#fields.hasError('motivo')} ? is-error"></textarea>
+            <span class="nes-text is-error" th:errors="*{motivo}" ></span>
         </div>
     
         <div>
             <label for="dataConsulta">Data da Consulta</label>
-            <input type="date" name="dataConsulta" id="dataConsulta">
+            <input type="date" class="nes-input" th:field="*{dataConsulta}" th:classappend="{#fields.hasError('dataConsulta')} ? is-error">
+            <span class="nes-text is-error" th:errors="*{dataConsulta}" ></span>
         </div>
 
         <div class="box-btns">

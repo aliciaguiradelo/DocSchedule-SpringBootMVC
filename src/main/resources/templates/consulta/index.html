@@ -16,7 +16,7 @@
         <h2>Visualize aqui as suas futuras consultas marcadas</h2>
     </header>
 
-    <a class="btn-new-consulta" th:href="${'/consultas/new'}">Nova consulta</a>
+    <a href="/new" class="btn-new-consulta">Nova consulta</a>
 
     <div class="warn" th:if="${message != null}">
         <p th:text="${message}"></p>
