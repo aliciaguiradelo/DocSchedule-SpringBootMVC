@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,10 +20,10 @@ import lombok.NoArgsConstructor;
 public class Consulta {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "{task.especialidade.notblank}")
+    @NotBlank(message = "{consulta.especialidade.notblank}")
     private String especialidade;
-    @Size(min=10, max=255, message = "{task.motivo.size}")
+    @Size(min=10, max=255, message = "{consulta.motivo.size}")
     private String motivo;
-    @NotBlank(message = "{task.dataConsulta.notblank}")
+    @NotNull(message = "{consulta.dataConsulta.notnull}")
     private LocalDate dataConsulta;
 }

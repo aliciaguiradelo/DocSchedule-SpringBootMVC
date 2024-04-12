@@ -14,6 +14,7 @@
     <header>
         <h1>Doc Schedule</h1>
         <h2>Agende aqui uma nova consulta</h2>
+        <h2 th:text="#{consulta.create}"></h2>
     </header>
 
     <form action="/consultas" method="POST" th:object="${consulta}">
@@ -35,14 +36,14 @@
     
         <div>
             <label for="motivo">Motivo</label>
-            <textarea type="text" th:field="*{motivo}" class="nes-textarea" th:classappend="{#fields.hasError('motivo')} ? is-error"></textarea>
-            <span class="nes-text is-error" th:errors="*{motivo}" ></span>
+            <textarea type="text" th:field="*{motivo}" th:classappend="${#fields.hasErrors('motivo')} ? is-erro"></textarea>
+            <span th:errors="*{motivo}"></span>
         </div>
     
         <div>
             <label for="dataConsulta">Data da Consulta</label>
-            <input type="date" class="nes-input" th:field="*{dataConsulta}" th:classappend="{#fields.hasError('dataConsulta')} ? is-error">
-            <span class="nes-text is-error" th:errors="*{dataConsulta}" ></span>
+            <input type="date" th:field="*{dataConsulta}" th:classappend="${#fields.hasErrors('dataConsulta')} ? is-erro">
+            <span th:errors="*{dataConsulta}" ></span>
         </div>
 
         <div class="box-btns">

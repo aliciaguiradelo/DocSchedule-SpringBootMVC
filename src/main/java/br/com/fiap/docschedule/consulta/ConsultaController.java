@@ -64,7 +64,7 @@ public class ConsultaController {
 
     @GetMapping("new")
     public String form(Consulta consulta) {
-        return "consultas/form";
+        return "consulta/form";
     }
 
     @PostMapping
