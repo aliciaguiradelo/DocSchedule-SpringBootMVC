@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,9 +34,11 @@ public class ConsultaController {
     MessageSource messageSource;
 
     @GetMapping
-    public String index(Model model){
+    public String index(Model model, @AuthenticationPrincipal OAuth2User user){
         List<Consulta> consultas = repository.findAll();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        model.addAttribute("user", user.getAttribute("name"));
+        model.addAttribute("avatar", user.getAttribute("avatar"));
 
         List<ConsultaDTO> consultasDTO = consultas.stream()
                 .map(consulta -> new ConsultaDTO(
@@ -45,6 +49,10 @@ public class ConsultaController {
                 .collect(Collectors.toList());
 
         model.addAttribute("consultas", consultasDTO);
+        model.addAttribute("consultas", repository.findAll());
+        model.addAttribute("user", user.getAttribute("name"));
+        model.addAttribute("avatar", user.getAttribute("avatar_url"));
+
         return "consulta/index";
     }
 
