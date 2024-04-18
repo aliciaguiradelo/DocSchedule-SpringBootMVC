@@ -17,7 +17,7 @@
         <h2 th:text="#{consulta.create}"></h2>
     </header>
 
-    <form th:action="${'/consultas'}" method="POST" th:object="${consulta}">
+    <form th:action="${'/consultas'}" class="container" method="POST" th:object="${consulta}">
         <div>
             <label for="especialidade">Especialidade</label>
             <select th:field="*{especialidade}">
